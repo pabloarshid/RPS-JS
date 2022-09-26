@@ -1,4 +1,4 @@
-const gameoptions = ['ROCK','PAPER','SCISSORS'];
+const gameoptions = ['ROCK','PAPER','SCISSOR'];
 Array.prototype.random = function () {
   return this[Math.floor((Math.random()*this.length))];
 }
