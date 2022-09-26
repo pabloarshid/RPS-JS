@@ -1,4 +1,4 @@
-var gameoptions = ['ROCK','PAPER','SCISSORS'];
+const gameoptions = ['ROCK','PAPER','SCISSORS'];
 Array.prototype.random = function () {
   return this[Math.floor((Math.random()*this.length))];
 }
@@ -6,49 +6,61 @@ Array.prototype.random = function () {
 function getComputerChoice(optionslist){
   return gameoptions.random();
 }
-const computerchoice = getComputerChoice(gameoptions);
 
 function getUserChoice(){
   let input = prompt("Rock, Paper, or Scissor?");
+  console.log(input.toUpperCase());
   return input.toUpperCase();
 }
 
-const userinput = getUserChoice();
-console.log(userinput);
 function playRound(userchoice, computerchoice){
-  let winner;
   if (userchoice == 'ROCK' && computerchoice == 'ROCK'){
-    winner = 'TIE'
+    return 'TIE';
   }
   else if (userchoice == 'ROCK' && computerchoice == 'PAPER') {
-    winner = 'COMPUTER'
+    return 'COMPUTER';
   }
   else if (userchoice == 'ROCK' && computerchoice == 'SCISSOR') {
-    winner = 'USER'
+    return 'USER';
   }
   else if (userchoice == 'PAPER' && computerchoice == 'PAPER') {
-    winner = 'TIE'
+    return 'TIE';
   }
   else if (userchoice == 'PAPER' && computerchoice == 'ROCK') {
-    winner = 'USER'
+    return 'USER';
   }
   else if (userchoice == 'PAPER' && computerchoice == 'SCISSOR') {
-    winner = 'COMPUTER'
+    return 'COMPUTER';
   }
   else if (userchoice == 'SCISSOR' && computerchoice == 'SCISSOR') {
-    winner = 'TIE'
+    return 'TIE';
   }
   else if (userchoice == 'SCISSOR' && computerchoice == 'ROCK') {
-    winner = 'COMPUTER'
+    return 'COMPUTER';
   }
   else if (userchoice == 'SCISSOR' && computerchoice == 'PAPER') {
-    winner = 'USER'
+    return 'USER';
   }
-  return winner
 }
 
-const win = playRound(userinput, computerchoice);
-console.log(win);
-// function game(){
-//
-// }
+function game(){
+  let user = 0;
+  let comp = 0;
+  let tie = 0;
+  for (let i = 0; i < 5; i++) {
+    let computerchoices = getComputerChoice(gameoptions);
+    let userinput = getUserChoice();
+    let win = playRound(userinput, computerchoices);
+    if (win == 'USER'){
+      user++;
+    }
+    else if (win == 'COMPUTER') {
+      comp++;
+    }
+    else if (win == 'TIE') {
+      tie++;
+    }
+ }
+ console.log(`User Won: ${user} times, Computer Won: ${comp} times, Game tied: ${tie} times.`);
+}
+game()
